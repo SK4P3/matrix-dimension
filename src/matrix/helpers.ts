@@ -16,6 +16,8 @@ export async function getFederationConnInfo(serverName: string): Promise<IFedera
     const expirationMs = 2 * 60 * 60 * 1000; // 2 hours
 
     // Check to see if we've cached the hostname at all already
+    // fixed federed bug for me
+    serverName = config.homeserver.name;
     const cachedUrl = Cache.for(CACHE_FEDERATION).get(serverName);
     if (cachedUrl) {
         LogService.debug("matrix", "Cached federation URL for " + serverName + " is " + cachedUrl.url);
